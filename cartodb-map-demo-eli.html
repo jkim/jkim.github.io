@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.14/themes/css/cartodb.css" />
+        <script src="http://libs.cartocdn.com/cartodb.js/v3/3.14/cartodb.js"></script>
+    </head>
+    <body>
+        <div id="map_canvas" style="height:500px"></div>
+
+        <script>
+          cartodb.createVis(
+            'map_canvas',
+            'http://documentation.cartodb.com/api/v2/viz/b2015dec-5a17-11e4-ae8e-0e018d66dc29/viz.json',
+            {
+                title: true,
+                description: true,
+                search: true,
+                tiles_loader: true,
+                center_lon: -73.70,
+                center_lat: 40.8475003,
+                zoom: 11,
+                layer_selector: true,
+                legends: true,
+          }).done(function(vis, layers) {
+
+          layers[1].setOpacity(0.5);
+
+          layers[1].on('featureClick', function(e, latlng, pos, data, layerNumber) {
+            layers[1].toggle();
+          });
+
+          });
+        </script>
+    </body>
+</html>
